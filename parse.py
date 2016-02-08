@@ -30,7 +30,7 @@ def getPage(page):
 	if "refugees welcome" in q:
 		a = d('div.noprint.alert-warning')
 		if a.text():
-			break
+			pass
 		else:
 			parsePage(d)
 

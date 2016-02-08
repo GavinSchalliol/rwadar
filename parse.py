@@ -3,11 +3,11 @@ from pyquery import PyQuery as pq
 from config import i, site, limit, incr
 
 def getPageTitle(d):
-	pageTitle = [title.text for title in d('title')]
+	pageTitle = [title.text for title in d('title')]	# Ad title
         print pageTitle[0].encode('utf8')
 
 def getPageStats(d):
-	x = d('h1').filter('.headline-key-facts')
+	x = d('h1').filter('.headline-key-facts')	# "Zimmergröße & Gesamtmiete"
 	info = x.text()
 	print info	# for debugging
 	if info:
@@ -24,12 +24,12 @@ def parsePage(d):
 def getPage(page):
 	print page	# for debugging
 	d = pq(url=page)
-	p = d('div').filter('.col-sm-12')
+	p = d('div').filter('.col-sm-12')	# "description" box
 	q = p.text()
 	q = q.lower()
 	if "refugees welcome" in q:
 		print "refugees were welcome here!"	# for debugging
-		a = d('div.noprint.alert-warning')
+		a = d('div.noprint.alert-warning')	# deactivation message
 		if a.text():
 			pass
 		else:

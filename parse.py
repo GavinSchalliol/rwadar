@@ -26,12 +26,14 @@ def getPage(page):
 	d = pq(url=page)
 	p = d('div').filter('.col-sm-12')
 	q = p.text()
-	q.lower()
+	q = q.lower()
 	if "refugees welcome" in q:
+		print "refugees were welcome here!"	# for debugging
 		a = d('div.noprint.alert-warning')
 		if a.text():
 			pass
 		else:
+			print "a live hit!"	# for debugging
 			parsePage(d)
 
 while (i < limit):

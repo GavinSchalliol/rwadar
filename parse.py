@@ -17,19 +17,25 @@ def getPageStats(d):
 	else:
 		pass
 
+def parsePage(d):
+	getPageTitle(d)
+	getPageStats(d)
+
 def getPage(page):
 	print page	# for debugging
 	d = pq(url=page)
-	getPageTitle(d)
-	getPageStats(d)
+	p = d('div').filter('.col-sm-12')
+	q = p.text()
+	q.lower()
+	if "refugees welcome" in q:
+		a = d('div.noprint.alert-warning')
+		if a.text():
+			break
+		else:
+			parsePage(d)
 
 while (i < limit):
 	it = str(i)
 	page = ("http://" + site + "/" + it + ".html")
 	i = i + 1
 	getPage(page)
-
-# to get deactivation warning: doc('div.noprint.alert-warning')
-
-
-

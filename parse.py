@@ -7,7 +7,7 @@ def getPageTitle(d):
         print pageTitle[0].encode('utf8')
 
 def getPageStats(d):
-	x = d('h1').filter('.headline-key-facts')	# "Zimmergröße & Gesamtmiete"
+	x = d('h1').filter('.headline-key-facts')	# "Zimmergroesse and Gesamtmiete"
 	info = x.text()
 	print info	# for debugging
 	if info:
@@ -17,9 +17,17 @@ def getPageStats(d):
 	else:
 		pass
 
+def getPageCity(d):
+	p = d('div').filter('.col-sm-4')
+	q = p.text()
+	q = q.split()
+	print "City: " + q[2]
+	print "Postleitzahl: " + q[1]
+
 def parsePage(d):
 	getPageTitle(d)
 	getPageStats(d)
+	getPageCity(d)
 
 def getPage(page):
 	print page	# for debugging

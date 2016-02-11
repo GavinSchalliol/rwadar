@@ -1,10 +1,12 @@
 #!/usr/bin/python
 from pyquery import PyQuery as pq
 from config import i, site, limit, incr
+file = open('results.txt', 'a')
 
 def getPageTitle(d):
 	pageTitle = [title.text for title in d('title')]	# Ad title
-        print pageTitle[0].encode('utf8')
+	roomTitle = pageTitle[0].encode('utf8')
+	print roomTitle					# for debugging
 
 def getPageStats(d):
 	x = d('h1').filter('.headline-key-facts')	# "Zimmergroesse and Gesamtmiete"
@@ -12,8 +14,10 @@ def getPageStats(d):
 	print info	# for debugging
 	if info:
 		info = info.split()
-		print "Size: " + info[1].encode('utf8')
-		print "Rent: " + info[3].encode('utf8')
+		roomSize = info[1].encode('utf8')
+		roomRent = info[3].encode('utf8')
+		print "Size: " + roomSize 
+		print "Rent: " + roomRent
 	else:
 		pass
 
@@ -21,13 +25,19 @@ def getPageCity(d):
 	p = d('div').filter('.col-sm-4')
 	q = p.text()
 	q = q.split()
-	print "City: " + q[2]
-	print "Postleitzahl: " + q[1]
+	roomCity = q[2]
+	roomPLZ = q[1]
+	print "City: " + roomCity
+	print "Postleitzahl: " + roomPLZ
+
+def exportResults():
+	file.write(roomTitle + ";" + roomCity + ";" + roomPLZ + ";" + roomRent + ";" + roomSize)
 
 def parsePage(d):
 	getPageTitle(d)
 	getPageStats(d)
 	getPageCity(d)
+	exportResults()
 
 def getPage(page):
 	print page	# for debugging
@@ -49,3 +59,4 @@ while (i < limit):
 	page = ("http://" + site + "/" + it + ".html")
 	i = i + 1
 	getPage(page)
+file.close()

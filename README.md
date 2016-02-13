@@ -2,7 +2,11 @@
 Coming soon!
 
 * Dependencies
-`pyquery`
-`pytest`
+```
+pyquery
+pytest
+```
 * To run tests
-`py.test`
+```
+$ py.test
+```

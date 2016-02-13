@@ -3,6 +3,11 @@ from pyquery import PyQuery as pq
 from config import i, site, limit, incr
 file = open('results.txt', 'a')
 
+crawled = 0
+notFound = 0
+hitTotal = 0
+hitActive = 0
+
 def getPageTitle(d):
 	pageTitle = [title.text for title in d('title')]	# Ad title
 	global roomTitle
@@ -44,8 +49,15 @@ def parsePage(d):
 	file.write(exportResults())
 
 def getPage(page):
-	print "Crawled: " + str(crawled) + "  Total Hits: " + str(hitTotal) + "  Active hits: " + str(hitActive)	# for debugging
+	print "Crawled: " + str(crawled) + "  notFound: " + str(notFound) + "  Total Hits: " + str(hitTotal) + "  Active hits: " + str(hitActive)
 	d = pq(url=page)
+	p = d('div').filter('.col-md-8')
+	q = p.text()
+	q = q.lower()
+	if "anzeige nicht vorhanden" in q:
+		global notFound
+		notFound += 1
+		return
 	p = d('div').filter('.col-sm-12')	# "description" box
 	q = p.text()
 	q = q.lower()

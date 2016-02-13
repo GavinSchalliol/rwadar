@@ -19,8 +19,6 @@ def getPageStats(d):
 		global roomRent
 		roomSize = info[1].encode('utf8')
 		roomRent = info[3].encode('utf8')
-		print "Size: " + roomSize 
-		print "Rent: " + roomRent
 		return (roomSize, roomRent)
 	else:
 		pass
@@ -33,8 +31,6 @@ def getPageCity(d):
 	global roomPLZ
 	roomCity = q[2]
 	roomPLZ = q[1]
-	print "City: " + roomCity
-	print "Postleitzahl: " + roomPLZ
 	return (roomCity, roomPLZ)
 
 def exportResults():
@@ -54,12 +50,10 @@ def getPage(page):
 	q = p.text()
 	q = q.lower()
 	if "refugees welcome" in q:
-		print "refugees were welcome here!"	# for debugging
 		a = d('div.noprint.alert-warning')	# deactivation message
 		if a.text():
 			pass
 		else:
-			print "a live hit!"	# for debugging
 			parsePage(d)
 
 if __name__ == '__main__':

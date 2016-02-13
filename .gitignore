@@ -1,2 +1,7 @@
 config.py*
 results.txt
+.cache/
+.parse.py.swp
+__pycache__/
+tests/__pycache__/
+parse.pyc

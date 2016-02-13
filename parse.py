@@ -44,21 +44,27 @@ def parsePage(d):
 	file.write(exportResults())
 
 def getPage(page):
-	print page	# for debugging
+	print "Crawled: " + str(crawled) + "  Total Hits: " + str(hitTotal) + "  Active hits: " + str(hitActive)	# for debugging
 	d = pq(url=page)
 	p = d('div').filter('.col-sm-12')	# "description" box
 	q = p.text()
 	q = q.lower()
 	if "refugees welcome" in q:
+		global hitTotal
+		hitTotal += 1
 		a = d('div.noprint.alert-warning')	# deactivation message
 		if a.text():
 			pass
 		else:
+			global hitActive
+			hitActive += 1
 			parsePage(d)
 
 if __name__ == '__main__':
 	while (i < limit):
 		it = str(i)
+		global crawled
+		crawled += 1
 		page = ("http://" + site + "/" + it + ".html")
 		i = i + 1
 		getPage(page)

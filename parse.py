@@ -6,7 +6,7 @@ file = open('results.txt', 'a')
 def getPageTitle(d):
 	pageTitle = [title.text for title in d('title')]	# Ad title
 	roomTitle = pageTitle[0].encode('utf8')
-	print roomTitle					# for debugging
+	return roomTitle					# for debugging
 
 def getPageStats(d):
 	x = d('h1').filter('.headline-key-facts')	# "Zimmergroesse and Gesamtmiete"
@@ -54,9 +54,10 @@ def getPage(page):
 			print "a live hit!"	# for debugging
 			parsePage(d)
 
-while (i < limit):
-	it = str(i)
-	page = ("http://" + site + "/" + it + ".html")
-	i = i + 1
-	getPage(page)
+if __name__ == '__main__':
+	while (i < limit):
+		it = str(i)
+		page = ("http://" + site + "/" + it + ".html")
+		i = i + 1
+		getPage(page)
 file.close()

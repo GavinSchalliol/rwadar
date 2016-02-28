@@ -1,7 +1,7 @@
 #!/usr/bin/python
 from pyquery import PyQuery as pq
 from config import i, site, limit, incr
-file = open('results.txt', 'a')
+file = open('page.md', 'a')
 
 crawled = 0
 notFound = 0
@@ -39,7 +39,7 @@ def getPageCity(d):
 	return (roomCity, roomPLZ)
 
 def exportResults():
-	resultsString = roomTitle + ";" + roomCity + ";" + roomPLZ + ";" + roomRent + ";" + roomSize
+	resultsString = "| " + roomCity + " | " + roomPLZ + " | " + roomRent + " | " + roomSize + " | " + roomTitle
 	return resultsString
 
 def parsePage(d):

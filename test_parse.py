@@ -17,4 +17,4 @@ def test_get_page_city():
 	assert getPageCity(x) == ("Lüneburg", "21335")
 
 def test_export_of_joined_results():
-	assert exportResults() == "Title of the page;Lüneburg;21335;300€;20m²"
+	assert exportResults() == "| Lüneburg | 21335 | 300€ | 20m² | Title of the page"

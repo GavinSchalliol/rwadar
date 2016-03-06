@@ -2,19 +2,24 @@
 from pyquery import PyQuery as pq
 from config import i, site, limit, incr
 
-class Listing():
-	def __init__(self):
+url = "http://" + site + "/" + str(i) + ".html"
+d = pq(url)
+
+class Listing:
+	def __init__(self,d):
 		pass
-	def city(self):
+	def city(self,d):
 		pass
-	def plz(self):
+	def plz(self,d):
 		pass
-	def rent(self):
+	def rent(self,d):
 		pass
-	def size(self):
+	def size(self,d):
 		pass
 
 def resultsString():
 	pass
 
-listing = Listing()
+
+listing = Listing(d)
+

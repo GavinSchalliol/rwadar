@@ -7,6 +7,8 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 x = pq(filename="tests/data/5402101.html")
 
+listing = Listing(x)
+
 def test_get_page_title():
 	assert listing.title(x) == "Title of the page"
 

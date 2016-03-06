@@ -19,11 +19,25 @@ class Listing:
 		city = cityObj[2]
 		return city
 	def plz(self,d):
-		pass
+		cityObj = d('div').filter('.col-sm-4')
+                cityObj = cityObj.text()
+                cityObj = cityObj.split()
+                plz = cityObj[1]
+		return plz
 	def rent(self,d):
-		pass
+		rentObj = d('h1').filter('.headline-key-facts')
+		rentObj = rentObj.text()
+		if rentObj:
+			rentObj = rentObj.split()
+			rent = rentObj[3].encode('utf8')
+			return rent
 	def size(self,d):
-		pass
+		rentObj = d('h1').filter('.headline-key-facts')
+                rentObj = rentObj.text()
+                if rentObj:
+                        rentObj = rentObj.split()
+                        size = rentObj[1].encode('utf8')
+                        return size
 
 def resultsString():
 	pass

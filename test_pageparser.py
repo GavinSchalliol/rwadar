@@ -1,5 +1,5 @@
 # encoding=utf8  
-from pageparser import Listing
+from pageparser import Listing, resultsString
 from pyquery import PyQuery as pq
 import sys
 
@@ -25,4 +25,4 @@ def test_get_listing_plz():
 	assert listing.plz(x) == ("21335")
 
 def test_export_of_joined_results():
-	assert resultsString() == "Title of the page;Lüneburg;21335;300€;20m²"
+	assert resultsString(x) == "Title of the page;Lüneburg;21335;300€;20m²"

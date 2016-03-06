@@ -39,9 +39,11 @@ class Listing:
                         size = rentObj[1].encode('utf8')
                         return size
 
-def resultsString():
-	pass
-
-
 listing = Listing(d)
+
+def resultsString(d):
+        resultsString = listing.title(d) + ";" + listing.city(d) + ";" + listing.plz(d) + ";" + listing.rent(d) + ";" + listing.size(d)
+        return resultsString
+
+
 

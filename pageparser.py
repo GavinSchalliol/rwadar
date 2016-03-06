@@ -13,7 +13,11 @@ class Listing:
 		title = titleObj[0].encode('utf8')
 		return title
 	def city(self,d):
-		pass
+		cityObj = d('div').filter('.col-sm-4')
+		cityObj = cityObj.text()
+		cityObj = cityObj.split()
+		city = cityObj[2]
+		return city
 	def plz(self,d):
 		pass
 	def rent(self,d):

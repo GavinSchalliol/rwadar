@@ -9,15 +9,19 @@ x = pq(filename="tests/data/5402101.html")
 
 listing = Listing(x)
 
-def test_get_page_title():
+def test_get_listing_title():
 	assert listing.title(x) == "Title of the page"
 
-def test_get_page_rent_and_size():
+def test_get_listing_rent():
 	assert listing.rent(x) == ("300€")
+
+def test_get_listing_size():
 	assert listing.size(x) == ("20m²")
 
-def test_get_page_city():
+def test_get_listing_city():
 	assert listing.city(x) == ("Lüneburg")
+
+def test_get_listing_plz():
 	assert listing.plz(x) == ("21335")
 
 def test_export_of_joined_results():
